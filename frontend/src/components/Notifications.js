@@ -39,11 +39,11 @@ const Notifications = ({ notifications, onNotificationRead }) => {
   const getNotificationIcon = (type) => {
     switch (type) {
       case 'HIGH_CONSUMPTION':
-        return '⚠️';
+        return '!';
       case 'SUGGESTION':
-        return '💡';
+        return 'S';
       default:
-        return 'ℹ️';
+        return 'i';
     }
   };
 

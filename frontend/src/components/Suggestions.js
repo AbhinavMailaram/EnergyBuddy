@@ -26,13 +26,13 @@ const Suggestions = ({ suggestions }) => {
   const getPriorityIcon = (priority) => {
     switch (priority) {
       case 'high':
-        return '⚠️';
+        return '!';
       case 'medium':
-        return '⚡';
+        return '~';
       case 'low':
-        return '💡';
+        return 'L';
       default:
-        return 'ℹ️';
+        return 'i';
     }
   };
 
@@ -47,7 +47,7 @@ const Suggestions = ({ suggestions }) => {
           <p>{suggestion.description}</p>
           {suggestion.savings && (
             <div className="suggestion-savings">
-              <strong>💰 {suggestion.savings}</strong>
+              <strong>Savings: {suggestion.savings}</strong>
             </div>
           )}
         </div>

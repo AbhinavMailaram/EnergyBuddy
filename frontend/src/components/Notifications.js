@@ -41,7 +41,7 @@ const Notifications = ({ notifications, onNotificationRead }) => {
       case 'HIGH_CONSUMPTION':
         return '!';
       case 'SUGGESTION':
-        return 'i';
+        return 'S';
       default:
         return 'i';
     }

@@ -30,7 +30,7 @@ const Suggestions = ({ suggestions }) => {
       case 'medium':
         return '~';
       case 'low':
-        return 'i';
+        return 'L';
       default:
         return 'i';
     }

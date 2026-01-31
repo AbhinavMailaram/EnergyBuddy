@@ -42,7 +42,7 @@ public class EnergyConsumption {
     @Column(name = "week_number")
     private Integer weekNumber;
 
-    @Column(name = "year")
+    @Column(name = "log_year")
     private Integer year;
 
     @PrePersist

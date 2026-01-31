@@ -1,5 +1,6 @@
 package com.energybuddy.service;
 
+import com.energybuddy.dto.NotificationResponse;
 import com.energybuddy.model.Notification;
 import com.energybuddy.model.User;
 import com.energybuddy.repository.NotificationRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 @Service
 public class NotificationService {
@@ -36,14 +38,16 @@ public class NotificationService {
         notificationRepository.save(notification);
     }
 
-    public List<Notification> getUserNotifications() {
+    public List<NotificationResponse> getUserNotifications() {
         User user = getCurrentUser();
-        return notificationRepository.findByUserIdOrderByCreatedAtDesc(user.getId());
+        return notificationRepository.findByUserIdOrderByCreatedAtDesc(user.getId())
+                .stream().map(this::mapToResponse).collect(Collectors.toList());
     }
 
-    public List<Notification> getUnreadNotifications() {
+    public List<NotificationResponse> getUnreadNotifications() {
         User user = getCurrentUser();
-        return notificationRepository.findByUserIdAndIsReadFalseOrderByCreatedAtDesc(user.getId());
+        return notificationRepository.findByUserIdAndIsReadFalseOrderByCreatedAtDesc(user.getId())
+                .stream().map(this::mapToResponse).collect(Collectors.toList());
     }
 
     public void markAsRead(Long notificationId) {
@@ -66,5 +70,15 @@ public class NotificationService {
         Map<String, Object> stats = new HashMap<>();
         stats.put("unreadCount", unreadCount);
         return stats;
+    }
+
+    private NotificationResponse mapToResponse(Notification notification) {
+        return new NotificationResponse(
+                notification.getId(),
+                notification.getMessage(),
+                notification.getType(),
+                notification.getIsRead(),
+                notification.getCreatedAt()
+        );
     }
 }

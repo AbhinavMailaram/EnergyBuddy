@@ -1,6 +1,6 @@
 package com.energybuddy.controller;
 
-import com.energybuddy.model.Notification;
+import com.energybuddy.dto.NotificationResponse;
 import com.energybuddy.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +18,12 @@ public class NotificationController {
     private NotificationService notificationService;
 
     @GetMapping
-    public ResponseEntity<List<Notification>> getAllNotifications() {
+    public ResponseEntity<List<NotificationResponse>> getAllNotifications() {
         return ResponseEntity.ok(notificationService.getUserNotifications());
     }
 
     @GetMapping("/unread")
-    public ResponseEntity<List<Notification>> getUnreadNotifications() {
+    public ResponseEntity<List<NotificationResponse>> getUnreadNotifications() {
         return ResponseEntity.ok(notificationService.getUnreadNotifications());
     }
 

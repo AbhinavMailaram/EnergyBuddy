@@ -84,7 +84,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <header className="dashboard-header">
         <div className="header-content">
-          <h1>⚡ Energy Buddy</h1>
+          <h1>Energy Buddy</h1>
           <div className="header-right">
             <span className="user-name">Welcome, {user?.username}!</span>
             <button onClick={handleLogout} className="logout-btn">
